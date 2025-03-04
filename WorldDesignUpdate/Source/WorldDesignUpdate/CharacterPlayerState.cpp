@@ -2,7 +2,20 @@
 
 ACharacterPlayerState::ACharacterPlayerState()
 {
-	Inventory = NewObject<UCharacterInventory>(this);
+    UE_LOG(LogTemp, Warning, TEXT("ACharacterPlayerState Constructor Called"));
+    FName MyName = "MyName";
+
+    //Inventory = CreateDefaultSubobject<UCharacterInventory>(TEXT("MYNAME"));
+    Inventory = NewObject<UCharacterInventory>();
+
+    if (Inventory)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Inventory successfully created"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("Failed to create Inventory"));
+    }
 }
 
 UCharacterInventory* ACharacterPlayerState::GetInventory()
@@ -11,6 +24,6 @@ UCharacterInventory* ACharacterPlayerState::GetInventory()
     {
         return Inventory;
     }
-	return nullptr;
+    return nullptr;
 
 }

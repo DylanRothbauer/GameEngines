@@ -9,6 +9,9 @@ class WORLDDESIGNUPDATE_API UCharacterInventory : public UObject {
 	GENERATED_BODY()
 
 public:
+
+	UCharacterInventory();
+
 	TArray<FCollectibleValues> Inventory;
 
 	UFUNCTION(BlueprintCallable)

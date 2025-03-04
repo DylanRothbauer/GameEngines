@@ -1,5 +1,9 @@
 #include "CharacterInventory.h"
 
+UCharacterInventory::UCharacterInventory()
+{
+}
+
 void UCharacterInventory::AddItem(FCollectibleValues Item)
 {
 	Inventory.Add(Item);

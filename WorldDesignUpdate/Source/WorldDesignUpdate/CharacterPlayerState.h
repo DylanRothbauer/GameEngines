@@ -16,4 +16,5 @@ public:
 	// Pointer to inventory class
 	UPROPERTY()
 	UCharacterInventory* Inventory;
+
 };
