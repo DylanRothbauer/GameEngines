@@ -33,7 +33,7 @@ void UCharacterInventory::AddToDelegate()
 	OnInventoryUpdated.Broadcast(Inventory.Num());
 }
 
-TArray<FCollectibleValues> UCharacterInventory::GetInventory()
+FCollectibleValues UCharacterInventory::GetInventory(int32 item)
 {
-	return Inventory;
+	return Inventory[item];
 }

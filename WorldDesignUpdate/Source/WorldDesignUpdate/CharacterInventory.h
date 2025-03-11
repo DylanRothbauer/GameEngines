@@ -15,7 +15,7 @@ public:
 	TArray<FCollectibleValues> Inventory;
 
 	UFUNCTION(BlueprintCallable)
-	TArray<FCollectibleValues> GetInventory();
+	FCollectibleValues GetInventory(int32 item); // needs to be Fcollectivevales (int32 values)
 
 	UFUNCTION(BlueprintCallable)
 	void AddItem(FCollectibleValues Item);
