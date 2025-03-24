@@ -1,15 +1,27 @@
 #pragma once
 #include <Components/BoxComponent.h>
 #include <Components/SpotLightComponent.h>
+#include "LampStateMachine.h"
 #include "LightSource.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLightSourceUpdated, bool, LightOn);
+
+// forward declaration
+class LampState;
 
 UCLASS()
 class WORLDDESIGNUPDATE_API ALightSource : public AActor {
 	GENERATED_BODY()
 public:
 	ALightSource();
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnLightSourceUpdated OnLightSourceUpdated;
+
+	void SetLightState(bool turnOn);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool LightOn;
 
 protected:
 
@@ -27,9 +39,11 @@ protected:
 	UFUNCTION()
 	void ToggleLight();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FOnLightSourceUpdated OnLightSourceUpdated;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool LightOn;
+	// State Machine variables
+	/*LampState* CurrentState;
+	float TimeinState;
+	bool isPlayerNear;*/
+	LampState* CurrentState;
+	LampStateMachine StateMachineValues;
+	
 };

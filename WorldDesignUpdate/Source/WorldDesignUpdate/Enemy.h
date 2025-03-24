@@ -3,7 +3,7 @@
 #include "Enemy.generated.h"
 
 UCLASS()
-class WORLDDESIGNUPDATE_API AEnemy : public APawn {
+class WORLDDESIGNUPDATE_API AEnemy : public AActor {
 	GENERATED_BODY()
 public:
 	AEnemy();
@@ -12,7 +12,9 @@ protected:
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+	void SimulatedTick();
 
+	FTimerHandle SimulatedTickHandle;
 	bool WasPlayerSeen;
 	FVector StartLocation;
 
@@ -35,7 +37,7 @@ protected:
 	bool IsPlayerFacingAway();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float MoveSpeed = 300.0f;
+	float MoveSpeed = 100.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float FieldOfView = 30.0f;

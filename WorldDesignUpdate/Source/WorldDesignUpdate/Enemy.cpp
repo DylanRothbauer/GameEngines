@@ -11,12 +11,34 @@ AEnemy::AEnemy()
 
 void AEnemy::BeginPlay()
 {
+	Super::BeginPlay();
+
 	UE_LOG(LogTemp, Warning, TEXT("Enemy BeginPlay"))
 	FTimerHandle LookHandle;
 	GetWorld()->GetTimerManager().SetTimer(LookHandle, this,
 		&AEnemy::LookForPlayer, 0.1f, true);
 
+	GetWorld()->GetTimerManager().SetTimer(SimulatedTickHandle, this,
+		&AEnemy::SimulatedTick, 0.05f, true);
+
 	StartLocation = GetActorLocation();
+}
+
+void AEnemy::SimulatedTick()
+{
+	float DeltaTime = 0.05f;
+
+	//UE_LOG(LogTemp, Warning, TEXT("Simulated Tick!"))
+
+		if (WasPlayerSeen)
+		{
+			RotateToPlayer(DeltaTime);
+
+			if (IsPlayerFacingAway())
+			{
+				MoveToPlayer(DeltaTime);
+			}
+		}
 }
 
 void AEnemy::Tick(float DeltaTime)
@@ -25,7 +47,7 @@ void AEnemy::Tick(float DeltaTime)
 
 	UE_LOG(LogTemp, Warning, TEXT("Enemy Tick!"))
 
-    if (WasPlayerSeen)
+    if (WasPlayerSeen && IsPlayerFacingAway())
     {
         RotateToPlayer(DeltaTime);
         MoveToPlayer(DeltaTime);
@@ -43,7 +65,7 @@ void AEnemy::LookForPlayer()
 
 	if (Player)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Player Found"))
+		//UE_LOG(LogTemp, Warning, TEXT("Player Found"))
 		ToPlayer = Player->GetActorLocation() - StartPos;
 		ToPlayer.Normalize();
 	}
@@ -61,18 +83,20 @@ void AEnemy::LookForPlayer()
 	WasPlayerSeen = false;
 	if (WasHit && Hit.GetActor() && Hit.GetActor()->ActorHasTag(FName("Player")))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Enemy saw the player!"))
+		//UE_LOG(LogTemp, Warning, TEXT("Enemy saw the player!"))
 		FVector Forward = GetComponentByClass<UArrowComponent>()->GetForwardVector();
-		Forward.Normalize(); // Crashing here?
+		Forward.Normalize();
 
 		float Dot = Forward.Dot(ToPlayer);
 		float Angle = FMath::RadiansToDegrees(FMath::Acos(Dot));
+
+		/*UE_LOG(LogTemp, Warning, TEXT("Angle: %f"), Angle);
+		UE_LOG(LogTemp, Warning, TEXT("Field of View: %f"), FieldOfView);*/
 
 		if (Angle <= FieldOfView)
 		{
 			LastPlayerPosition = Hit.GetActor()->GetActorLocation();
 			WasPlayerSeen = true;
-			UE_LOG(LogTemp, Warning, TEXT("WasPlayerSeenTrue!"))
 		}
 	}
 }
@@ -84,11 +108,16 @@ void AEnemy::MoveToPlayer(float DeltaTime)
 
 void AEnemy::MoveToLocation(FVector Location, float DeltaTime)
 {
-	UE_LOG(LogTemp, Warning, TEXT("MoveToLocation()!"))
+	//UE_LOG(LogTemp, Warning, TEXT("MoveToLocation()!"))
 	FVector ToLocation = Location - GetActorLocation();
 	float DistanceToLocation = ToLocation.Length();
 	ToLocation.Z = 0;
 	ToLocation.Normalize();
+
+	if (DistanceToLocation <= StopDistance) {
+		UE_LOG(LogTemp, Warning, TEXT("Enemy stopped at StopDistance: %f"), StopDistance)
+		return;
+	}
 
 	float Distance = DeltaTime * MoveSpeed;
 
@@ -106,6 +135,7 @@ void AEnemy::MoveToLocation(FVector Location, float DeltaTime)
 
 void AEnemy::RotateToPlayer(float DeltaTime)
 {
+	//UE_LOG(LogTemp, Warning, TEXT("RotateToPlayer()!"))
 	FVector ToPlayer = LastPlayerPosition - GetActorLocation();
 	ToPlayer.Z = 0;
 	ToPlayer.Normalize();
@@ -131,6 +161,7 @@ void AEnemy::RotateToPlayer(float DeltaTime)
 
 bool AEnemy::IsPlayerFacingAway()
 {
+	UE_LOG(LogTemp, Warning, TEXT("IsPlayerFacingAway()!"))
 	AWorldDesignUpdateCharacter* Player = Cast<AWorldDesignUpdateCharacter>(
 		UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)
 	);

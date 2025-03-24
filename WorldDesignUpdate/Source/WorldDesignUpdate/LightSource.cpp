@@ -1,5 +1,6 @@
 #include "LightSource.h"
 #include "GameFramework/Character.h"
+#include "LampStates.h"
 
 
 ALightSource::ALightSource()
@@ -16,6 +17,11 @@ ALightSource::ALightSource()
     SpotLight->SetIntensity(50000.0f);
     SpotLight->SetVisibility(LightOn);
 
+    // State Machine Stuff
+    CurrentState = OffLampState::GetInstance();
+    StateMachineValues.GameInstance = (UWorldDesignUpdateGameInstance*)GetGameInstance();
+    StateMachineValues.isPlayerNear = false;
+    StateMachineValues.TimeinState = 0.0f;
 }
 
 void ALightSource::BeginPlay()
@@ -61,4 +67,17 @@ void ALightSource::ToggleLight()
 
     OnLightSourceUpdated.Broadcast(LightOn);
     UE_LOG(LogTemp, Warning, TEXT("Light state changed: %s"), LightOn ? TEXT("On") : TEXT("Off"));
+}
+
+void ALightSource::SetLightState(bool turnOn)
+{
+    LightOn = turnOn;
+
+    if (SpotLight)
+    {
+        SpotLight->SetVisibility(LightOn);
+        SpotLight->SetIntensity(LightOn ? 5000.0f : 0.0f);
+    }
+
+    OnLightSourceUpdated.Broadcast(LightOn);
 }
