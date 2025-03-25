@@ -45,7 +45,7 @@ void AEnemy::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-	UE_LOG(LogTemp, Warning, TEXT("Enemy Tick!"))
+	//UE_LOG(LogTemp, Warning, TEXT("Enemy Tick!"))
 
     if (WasPlayerSeen && IsPlayerFacingAway())
     {
@@ -161,7 +161,7 @@ void AEnemy::RotateToPlayer(float DeltaTime)
 
 bool AEnemy::IsPlayerFacingAway()
 {
-	UE_LOG(LogTemp, Warning, TEXT("IsPlayerFacingAway()!"))
+	//UE_LOG(LogTemp, Warning, TEXT("IsPlayerFacingAway()!"))
 	AWorldDesignUpdateCharacter* Player = Cast<AWorldDesignUpdateCharacter>(
 		UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)
 	);

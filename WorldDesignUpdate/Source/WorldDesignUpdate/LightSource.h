@@ -23,6 +23,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool LightOn;
 
+	virtual void Tick(float DeltaTime) override;
+	FTimerHandle SimulatedTickHandle;
+	void SimulatedTick();
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -35,6 +39,9 @@ protected:
 
 	UFUNCTION()
 	void OnLightSourceOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool FromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OnWarningOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	UFUNCTION()
 	void ToggleLight();
