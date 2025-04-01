@@ -74,51 +74,63 @@ Config/DefaultEditorUserSettings.ini
 # Exclude external assets
 FreeWastelandProps_Meshingun/
 
-# --- Unreal Engine Project Specific ---
-# Unity project specific files
-/Library/
-/Temp/
-/obj/
-/Build/
-/Builds/
-/Logs/
-/UserSettings/
+# Ignore .NET build artifacts | UNITY
+[Bb]in/
+[Oo]bj/
 
-# MemoryCaptures can get excessive in size.
-# They also could contain extremely sensitive data
-/MemoryCaptures/
-
-# Recordings can get excessive in size
-/Recordings/
-
-# Uncomment this line if you wish to ignore the asset store tools plugin
-# /Assets/Plugins/AssetStoreTools/
-
-# Other files that are not needed in version control
-*.user
-*.csproj
-*.sln
-*.meta
+# User-specific settings
+*.userprefs
 *.suo
 *.tmp
-*.log
-*.launch
 *.user
-*.settings
-*.cache
-*.manifest
-*.meta
-*.asset
-*.bytes
-*.unitypackage
-*.unity
+*.rsuser
+*.sln.docstates
+
+# Unity-generated files
+Library/
+Logs/
+Temp/
+MemoryCaptures/
+Artifacts/
+
+# Cache files
+*.pidb
+*.booproj
+*.svd
 *.pdb
 *.ilk
-*.exe
-*.dll
-*.a
-*.lib
-*.framework
+*.aps
+*.sdf
+*.db
+*.opendb
+*.VC.db
+*.bak
+*.pidb.meta
 
-# Ignore all files in the directory named "Packages"
-/Packages/
+# Visual Studio / JetBrains Rider files
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+
+# Builds
+Build/
+Builds/
+ExportedObj/
+exported/
+*.apk
+*.aab
+*.unitypackage
+
+# Unity Lightmaps and GI cache
+LightmapSnapshot/
+LightingData.asset
+__MACOSX/
+
+# TextMeshPro generated assets
+TextMeshPro/
+
+# Ignore crash logs
+CrashReports/
+
