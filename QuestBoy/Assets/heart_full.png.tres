@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bk7tx30uhvbx1"]
+
+[ext_resource type="Texture2D" uid="uid://dqysbnwlbomxb" path="res://Assets/SGQ_ui/game_ui/hud.png" id="1_hyfiq"]
+
+[resource]
+atlas = ExtResource("1_hyfiq")
+region = Rect2(0, 0, 16, 16)

@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://btoqa1k6hcdhp"]
+
+[ext_resource type="Script" path="res://Scripts/spike.gd" id="1_5u3un"]
+[ext_resource type="Texture2D" uid="uid://bj84odf1i6k8k" path="res://Assets/SGQ_Dungeon/props/animated_props.png" id="2_fcijw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tohad"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6des3"]
+size = Vector2(10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n26fo"]
+atlas = ExtResource("2_fcijw")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch34h"]
+atlas = ExtResource("2_fcijw")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj0md"]
+atlas = ExtResource("2_fcijw")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aj38n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n26fo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch34h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj0md")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Spike" type="StaticBody2D"]
+script = ExtResource("1_5u3un")
+
+[node name="DamageZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("RectangleShape2D_tohad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6des3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aj38n")
+frame = 2
+frame_progress = 0.70846
+
+[connection signal="body_entered" from="DamageZone" to="." method="_on_damage_zone_body_entered"]

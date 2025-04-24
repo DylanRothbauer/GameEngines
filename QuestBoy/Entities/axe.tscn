@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://ca18pragb43so"]
+
+[ext_resource type="Script" path="res://Scripts/axe.gd" id="1_48mr3"]
+[ext_resource type="Texture2D" uid="uid://d20fygir658u0" path="res://Assets/SGQ_Dungeon/weapons_and_projectiles/projectiles_animated.png" id="2_hy40e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3upnv"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qleop"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w3n7"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcm5b"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2wav"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5udvw"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcwgp"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogah4"]
+atlas = ExtResource("2_hy40e")
+region = Rect2(112, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jw5iq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3upnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qleop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w3n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcm5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2wav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5udvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcwgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogah4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlgxh"]
+size = Vector2(10, 12)
+
+[node name="Axe" type="Node2D" groups=["Projectile"]]
+script = ExtResource("1_48mr3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jw5iq")
+frame_progress = 0.373478
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hlgxh")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

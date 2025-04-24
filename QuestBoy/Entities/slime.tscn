@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://ltf5qo6v0hh6"]
+
+[ext_resource type="Script" path="res://Scripts/slime.gd" id="1_018dh"]
+[ext_resource type="SpriteFrames" uid="uid://bhiisof4rnys8" path="res://Assets/Sprite Frames/Slime.tres" id="1_fq2kp"]
+[ext_resource type="Script" path="res://Scripts/state_machine.gd" id="2_srfsh"]
+[ext_resource type="Script" path="res://Scripts/enemy_idle.gd" id="3_lvvnl"]
+[ext_resource type="Script" path="res://Scripts/enemy_follow.gd" id="5_1ba7l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2i5v7"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aln78"]
+radius = 5.0
+
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_018dh")
+
+[node name="DamageZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("CircleShape2D_2i5v7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_fq2kp")
+animation = &"idle_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_aln78")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_srfsh")
+initial_state = NodePath("EnemyFollow")
+
+[node name="EnemyIdle" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_lvvnl")
+enemy = NodePath("../..")
+
+[node name="EnemyFollow" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_1ba7l")
+enemy = NodePath("../..")
+
+[connection signal="area_entered" from="DamageZone" to="." method="_on_damage_zone_area_entered"]
+[connection signal="body_entered" from="DamageZone" to="." method="_on_damage_zone_body_entered"]

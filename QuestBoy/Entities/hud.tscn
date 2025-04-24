@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://byb8b6541ygve"]
+
+[ext_resource type="Script" path="res://Scripts/health.gd" id="1_dk30c"]
+[ext_resource type="Texture2D" uid="uid://bk7tx30uhvbx1" path="res://Assets/heart_full.png.tres" id="2_7eics"]
+
+[node name="HUD" type="CanvasLayer"]
+offset = Vector2(25, 25)
+scale = Vector2(5, 5)
+transform = Transform2D(5, 0, 0, 5, 25, 25)
+
+[node name="Health" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(5, 0)
+offset_right = 96.0
+offset_bottom = 16.0
+script = ExtResource("1_dk30c")
+
+[node name="1" type="TextureRect" parent="Health"]
+layout_mode = 2
+texture = ExtResource("2_7eics")
+
+[node name="2" type="TextureRect" parent="Health"]
+layout_mode = 2
+texture = ExtResource("2_7eics")
+
+[node name="3" type="TextureRect" parent="Health"]
+layout_mode = 2
+texture = ExtResource("2_7eics")
+
+[node name="4" type="TextureRect" parent="Health"]
+layout_mode = 2
+texture = ExtResource("2_7eics")
+
+[node name="5" type="TextureRect" parent="Health"]
+layout_mode = 2
+texture = ExtResource("2_7eics")

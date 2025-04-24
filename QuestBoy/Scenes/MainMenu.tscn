@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpe12yakrr3rj"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_uqswm"]
+[ext_resource type="Texture2D" uid="uid://ox32uwlqursm" path="res://Assets/QuestBoy.png" id="2_k5rvf"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uqswm")
+
+[node name="QuestBoy Image" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 1156.0
+offset_bottom = 648.0
+texture = ExtResource("2_k5rvf")
+expand_mode = 1
+
+[node name="VBOX" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 260.0
+offset_top = -296.0
+offset_right = -246.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StartButton" type="Button" parent="VBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+
+[node name="SettingsButton" type="Button" parent="VBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "
+"
+flat = true
+
+[node name="QuitButton" type="Button" parent="VBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+
+[connection signal="pressed" from="VBOX/StartButton" to="." method="_on_start_button_pressed"]
