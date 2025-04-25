@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://xd25x5cp3v8u"]
+[gd_scene load_steps=5 format=3 uid="uid://xd25x5cp3v8u"]
 
+[ext_resource type="Script" path="res://Scripts/door.gd" id="1_dq1mj"]
 [ext_resource type="Texture2D" uid="uid://c5k3awk1okqj1" path="res://Assets/SGQ_Dungeon/grounds_and_walls/walls.png" id="1_hvpbk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgwkf"]
@@ -9,6 +10,7 @@ size = Vector2(16, 6)
 size = Vector2(16, 3)
 
 [node name="Door" type="StaticBody2D"]
+script = ExtResource("1_dq1mj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
@@ -25,3 +27,5 @@ shape = SubResource("RectangleShape2D_mgwkf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_2ygg8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

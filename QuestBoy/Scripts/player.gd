@@ -7,6 +7,7 @@ var axe = preload("res://Entities/axe.tscn")
 var pushback_velocity = Vector2.ZERO
 var pushback_duration = 0.2
 var pushback_timer = 0.0
+var shoot_disabled = false
 
 func _ready():
 	$AnimatedSprite2D.play("idle_right")
@@ -112,6 +113,11 @@ func take_damage(value):
 		play_hurt_animation()
 		
 func shoot():
+	if shoot_disabled:
+		return
+	
+	shoot_disabled = true
+	
 	if axe:
 		var axe_instance = axe.instantiate()
 		
@@ -123,6 +129,9 @@ func shoot():
 		axe_instance.direction = dir
 		
 		get_tree().current_scene.add_child(axe_instance)
+		
+		await get_tree().create_timer(0.5).timeout
+		shoot_disabled = false
 	
 func apply_pushback(force: Vector2):
 	pushback_velocity = force
