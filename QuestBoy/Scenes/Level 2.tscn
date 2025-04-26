@@ -53,7 +53,5 @@ position = Vector2(-12, 66)
 rotation = 3.14159
 target_scene = "Level 3"
 
-[connection signal="body_entered" from="Door/Area2D" to="Door" method="_on_area_2d_body_entered"]
-
 [editable path="Door"]
 [editable path="Door2"]
