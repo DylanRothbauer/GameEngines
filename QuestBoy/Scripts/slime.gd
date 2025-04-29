@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Slime
 
-signal slime_defeated(name)
+signal enemy_defeated(name)
 
 var last_direction = Vector2(1, 0)
 var health = 2
@@ -37,7 +37,7 @@ func destroy():
 	if defeated:
 		return  # Already handled
 	defeated = true
-	emit_signal("slime_defeated", name)
+	emit_signal("enemy_defeated", name)
 	queue_free()
 
 func is_defeated() -> bool:

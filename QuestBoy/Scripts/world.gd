@@ -17,8 +17,8 @@ func _ready() -> void:
 
 	# Connect signals
 	for enemy in enemies:
-		if enemy.has_signal("slime_defeated"):
-			enemy.connect("slime_defeated", _on_enemy_defeated)
+		if enemy.has_signal("enemy_defeated"):
+			enemy.connect("enemy_defeated", _on_enemy_defeated)
 		
 	# Connect door signals
 	for door in get_tree().get_nodes_in_group("Door"):

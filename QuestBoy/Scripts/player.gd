@@ -13,6 +13,12 @@ func _ready():
 	$AnimatedSprite2D.play("idle_right")
 	GameState.player = self
 	
+	# Set health from GameState
+	$PlayerModel.health = GameState.player_health
+	$PlayerModel.max_health = GameState.player_max_health
+	
+	GameState.notify_health_change($PlayerModel.health)
+	
 func _process(_delta: float) -> void:
 		pass
 	
@@ -99,6 +105,7 @@ func take_damage(value):
 		return
 		
 	$PlayerModel.health -= value
+	GameState.player_health = $PlayerModel.health
 	GameState.notify_health_change($PlayerModel.health) # Signal
 	
 	# $"../HUD/Health".update_health($PlayerModel.health)
@@ -132,7 +139,3 @@ func shoot():
 		
 		await get_tree().create_timer(0.5).timeout
 		shoot_disabled = false
-	
-func apply_pushback(force: Vector2):
-	pushback_velocity = force
-	pushback_timer = pushback_duration

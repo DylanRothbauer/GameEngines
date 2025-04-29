@@ -2,6 +2,9 @@ extends Node
 
 var player : Node = null
 var level_states = {}  # Stores data for each level
+var player_health = 5
+var player_max_health = 5
+
 
 signal health_changed(value)
 
