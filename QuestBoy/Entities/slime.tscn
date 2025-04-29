@@ -23,13 +23,14 @@ shape = SubResource("CircleShape2D_2i5v7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_fq2kp")
 animation = &"idle_left"
+frame_progress = 0.231997
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aln78")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_srfsh")
-initial_state = NodePath("EnemyFollow")
+initial_state = NodePath("EnemyIdle")
 
 [node name="EnemyIdle" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_lvvnl")

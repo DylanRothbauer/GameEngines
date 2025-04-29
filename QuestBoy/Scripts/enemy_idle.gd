@@ -15,6 +15,10 @@ func randomize_wander():
 	
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
+	if player:
+		print("Player found: ", player.name)  # Debugging print
+	else:
+		print("Player not found!")  # Debugging error
 	randomize_wander()
 	
 func Update(delta: float):

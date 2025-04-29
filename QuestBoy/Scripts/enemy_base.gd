@@ -36,6 +36,7 @@ func take_damage(amount: int) -> void:
 	
 	is_hurt = true
 	health -= amount
+	print("Taking damage! Health: %d" % health)
 	
 	play_hurt_animation()
 
@@ -48,7 +49,10 @@ func destroy() -> void:
 	defeated = true
 	emit_signal("enemy_defeated", name)
 	queue_free()
+	
+func is_defeated() -> bool:
+	return defeated
 
 func play_hurt_animation():
 	# Placeholder: child classes will override
-	pass
+	print("Base hurt animation called")
