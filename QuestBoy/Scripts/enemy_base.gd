@@ -5,6 +5,7 @@ class_name EnemyBase
 signal enemy_defeated(name)
 
 var health: int = 2
+var damage: int = 1
 var is_hurt: bool = false
 var defeated: bool = false
 
@@ -12,6 +13,9 @@ var pushback_velocity = Vector2.ZERO
 var pushback_timer: float = 0.0
 const PUSHBACK_DURATION = 0.2
 const PUSHBACK_FORCE = 100.0
+
+func _ready() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -56,3 +60,10 @@ func is_defeated() -> bool:
 func play_hurt_animation():
 	# Placeholder: child classes will override
 	print("Base hurt animation called")
+	
+func handle_body_entered(body: Node2D):
+	if body.name == "Player":
+		var dir = (global_position - body.global_position).normalized()
+		pushback_velocity = dir * PUSHBACK_FORCE
+		pushback_timer = PUSHBACK_DURATION
+		body.take_damage(damage)

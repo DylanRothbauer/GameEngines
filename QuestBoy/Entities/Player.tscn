@@ -267,6 +267,7 @@ shape = SubResource("RectangleShape2D_g4nqs")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_letul")
 animation = &"walk_right"
+frame_progress = 0.349046
 
 [node name="PlayerModel" type="Node2D" parent="."]
 script = ExtResource("1_li80c")

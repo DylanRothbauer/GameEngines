@@ -23,7 +23,7 @@ shape = SubResource("CircleShape2D_2i5v7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_fq2kp")
 animation = &"idle_left"
-frame_progress = 0.231997
+frame_progress = 0.885813
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aln78")
