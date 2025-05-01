@@ -14,10 +14,10 @@ func Physics_Update(delta : float):
 	# var direction = player.global_position - enemy.global_position
 	# var distance = direction.length()
 	
-	if enemy.pushback_timer > 0:
-		enemy.pushback_timer -= delta
-		enemy.velocity = enemy.pushback_velocity
-		return
+#	if enemy.pushback_timer > 0:
+#		enemy.pushback_timer -= delta
+#		enemy.velocity = enemy.pushback_velocity
+#		return
 
 	var direction = player.global_position - enemy.global_position
 	var distance = direction.length()

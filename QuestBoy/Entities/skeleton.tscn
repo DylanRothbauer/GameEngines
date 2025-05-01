@@ -1,9 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://bq6uceh7xjd1n"]
+[gd_scene load_steps=32 format=3 uid="uid://bq6uceh7xjd1n"]
 
 [ext_resource type="Script" path="res://Scripts/skeleton.gd" id="1_lrxwb"]
 [ext_resource type="Texture2D" uid="uid://csp617x3l0h61" path="res://Assets/SGQ_Enemies/normal/16x16/skeleton.png" id="2_wy5jx"]
 [ext_resource type="Script" path="res://Scripts/state_machine.gd" id="3_t4xyg"]
 [ext_resource type="Script" path="res://Scripts/enemy_idle.gd" id="4_eh0ck"]
+[ext_resource type="Script" path="res://Scripts/enemy_shoot.gd" id="5_cait0"]
+[ext_resource type="PackedScene" uid="uid://cd4havv7tbwx4" path="res://Entities/bone.tscn" id="6_wq0lh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_joo75"]
 atlas = ExtResource("2_wy5jx")
@@ -224,4 +226,10 @@ initial_state = NodePath("EnemyIdle")
 script = ExtResource("4_eh0ck")
 enemy = NodePath("../..")
 
+[node name="EnemyShoot" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_cait0")
+enemy = NodePath("../..")
+projectile_scene = ExtResource("6_wq0lh")
+
+[connection signal="area_entered" from="Danger Zone" to="." method="_on_danger_zone_area_entered"]
 [connection signal="body_entered" from="Danger Zone" to="." method="_on_danger_zone_body_entered"]

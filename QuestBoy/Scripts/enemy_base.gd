@@ -20,11 +20,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
-	# Apply pushback (optional - maybe later)
-#	if pushback_timer > 0:
-#		pushback_timer -= delta
-#		if pushback_timer <= 0:
-#			pushback_velocity = Vector2.ZERO
+	# Apply pushback
+	if pushback_timer > 0:
+		pushback_timer -= delta
+		velocity = pushback_velocity
+		move_and_slide()
+		return
+	
+	
 
 	if is_hurt or defeated:
 		return
@@ -62,8 +65,22 @@ func play_hurt_animation():
 	print("Base hurt animation called")
 	
 func handle_body_entered(body: Node2D):
+	print("BASE ENEMY BODY ENTERED CALLED")
 	if body.name == "Player":
 		var dir = (global_position - body.global_position).normalized()
 		pushback_velocity = dir * PUSHBACK_FORCE
 		pushback_timer = PUSHBACK_DURATION
 		body.take_damage(damage)
+		
+func handle_area_entered(area : Area2D):
+	if is_hurt or defeated:
+		return
+		
+	var weapon = area.get_parent()
+	if weapon.is_in_group("Projectile") and weapon.has_method("get_damage"):
+		var damage = weapon.get_damage()
+		take_damage(damage)
+		
+func on_player_nearby(node : State):
+	# Children override
+	pass

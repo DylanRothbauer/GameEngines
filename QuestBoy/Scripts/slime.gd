@@ -29,13 +29,7 @@ func _on_damage_zone_body_entered(body: Node2D):
 	handle_body_entered(body)
 
 func _on_damage_zone_area_entered(area: Area2D):
-	if is_hurt or defeated:
-		return
-		
-	var weapon = area.get_parent()
-	if weapon.is_in_group("Projectile") and weapon.has_method("get_damage"):
-		var damage = weapon.get_damage()
-		take_damage(damage)
+	handle_area_entered(area)
 	
 func play_hurt_animation():
 	if velocity.x > 0:
@@ -43,3 +37,5 @@ func play_hurt_animation():
 	else:
 		$AnimatedSprite2D.play("hurt_left")
 		
+func on_player_nearby(state_node):
+	state_node.Transistioned.emit(state_node, "EnemyFollow")

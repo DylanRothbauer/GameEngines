@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://du73uw1c1f0c6"]
+
+[ext_resource type="Texture2D" uid="uid://d20fygir658u0" path="res://Assets/SGQ_Dungeon/weapons_and_projectiles/projectiles_animated.png" id="1_e6o84"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diqyj"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_711hi"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li4io"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyjht"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmjep"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ag6o"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnkxn"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt0u7"]
+atlas = ExtResource("1_e6o84")
+region = Rect2(112, 16, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diqyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_711hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li4io")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyjht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmjep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ag6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnkxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt0u7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]

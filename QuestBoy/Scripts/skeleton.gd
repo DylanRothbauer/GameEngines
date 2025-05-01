@@ -40,3 +40,9 @@ func play_hurt_animation():
 
 func _on_danger_zone_body_entered(body: Node2D) -> void:
 	handle_body_entered(body)
+	
+func _on_danger_zone_area_entered(area: Area2D) -> void:
+	handle_area_entered(area)
+	
+func on_player_nearby(state_node):
+	state_node.Transistioned.emit(state_node, "EnemyShoot")
