@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal health_changed(value)
+
 var last_direction = Vector2(1,0)
 var prev_direction = Vector2(1,0)
 
@@ -17,7 +19,8 @@ func _ready():
 	$PlayerModel.health = GameState.player_health
 	$PlayerModel.max_health = GameState.player_max_health
 	
-	GameState.notify_health_change($PlayerModel.health)
+	#GameState.notify_health_change($PlayerModel.health)
+	emit_signal("health_changed", $PlayerModel.health)
 	
 func _process(_delta: float) -> void:
 		pass
@@ -106,7 +109,8 @@ func take_damage(value):
 		
 	$PlayerModel.health -= value
 	GameState.player_health = $PlayerModel.health
-	GameState.notify_health_change($PlayerModel.health) # Signal
+	#GameState.notify_health_change($PlayerModel.health) # Signal
+	emit_signal("health_changed", $PlayerModel.health)
 	
 	# $"../HUD/Health".update_health($PlayerModel.health)
 	

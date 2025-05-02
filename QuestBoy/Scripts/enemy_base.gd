@@ -26,8 +26,6 @@ func _physics_process(delta: float) -> void:
 		velocity = pushback_velocity
 		move_and_slide()
 		return
-	
-	
 
 	if is_hurt or defeated:
 		return

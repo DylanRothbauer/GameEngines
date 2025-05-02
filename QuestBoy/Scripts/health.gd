@@ -5,14 +5,30 @@ var heart_empty = preload("res://Assets/heart_empty.png.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameState.connect("health_changed", Callable(self, "update_health"))
+	#GameState.connect("health_changed", Callable(self, "update_health"))
+	call_deferred("_wait_for_player")
+		
+	#GameState.player.connect("health_changed", Callable(self, "update_health"))
 	check_scene_visibility()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func _wait_for_player():
+	await get_tree().process_frame  # Wait 1 frame to ensure Player is in tree
+	while GameState.player == null:
+		await get_tree().process_frame
+	print("Player found for health")
+	GameState.player.connect("health_changed", Callable(self, "update_health"))
+	update_health(GameState.player_health)  # Sync HUD immediately
 
+func _connect_to_player():
+	if GameState.player:
+		print("Player found for health")
+		GameState.player.connect("health_changed", Callable(self, "update_health"))
+	else:
+		print("Player NOT found for health")
 
 func update_health(value: int):
 	print("Updating HUD Health:", value)

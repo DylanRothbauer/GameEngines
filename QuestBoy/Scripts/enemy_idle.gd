@@ -33,6 +33,6 @@ func Physics_Update(delta: float):
 		
 	var direction = player.global_position - enemy.global_position
 	
-	if direction.length() < 40:
+	if direction.length() < 50:
 		if enemy.has_method("on_player_nearby"):
 			enemy.on_player_nearby(self)
