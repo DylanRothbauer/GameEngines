@@ -22,6 +22,7 @@ This repo is structured with dedicated folders for each engine, demonstrating co
 GameEngineProject/
 ├── Unreal/      # Unreal Engine 5 projects (C++ / Blueprints)
 ├── Unity/       # Unity projects (C#)
-└── Godot/       # Godot 4 projects (GDScript)
+├── Godot/       # Godot 4 projects (GDScript)
+├── Pygame/      # Pygame programs (Python)
 
 
