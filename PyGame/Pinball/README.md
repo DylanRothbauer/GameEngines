@@ -1,5 +1,3 @@
-# PHYS360-FA25-Pinball
-Copy into this folder the following files:
-- physics_objects.py
-- contact.py
-- forces.py
+Screenshot
+
+<img width="496" height="375" alt="pinball" src="https://github.com/user-attachments/assets/5f3c90eb-3b0a-4681-a23b-0e02b7c094d6" />
